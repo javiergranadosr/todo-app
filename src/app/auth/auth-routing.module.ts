@@ -12,14 +12,17 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        title: "Iniciar sesión"
       },
       {
         path: 'register',
         component: RegisterComponent,
+        title: "Crear cuenta"
       },
       {
         path: '**',
         redirectTo: 'login',
+        title: "Iniciar sesión"
       },
     ],
   },

@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, DoCheck {
+
+  mode: string = "";
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngDoCheck(): void {
+    this.mode = localStorage.getItem('mode')!;
   }
 
+  ngOnInit(): void {
+    this.mode = localStorage.getItem('mode')!;
+  }
 }

@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div class="container" [ngClass]="mode ? mode : 'dark'">
+  <div [ngClass]="mode ? 'banner__' + mode : 'banner__dark'">
+    <div class="banner__title">
+      <h1>{{ titleMain | uppercase }}</h1>
+      <img
+        src="./assets/images/light/icon-moon.svg"
+        alt="Modo oscuro"
+        *ngIf="modeDark"
+        (click)="changeMode('D')"
+      />
+      <img
+        src="./assets/images/dark/icon-sun.svg"
+        alt="Modo claro"
+        *ngIf="modeLight"
+        (click)="changeMode('L')"
+      />
+    </div>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

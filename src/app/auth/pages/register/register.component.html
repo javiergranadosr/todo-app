@@ -1,1 +1,23 @@
-<p>register works!fgfgfgfgfgfg</p>
+<div [ngClass]="mode ? 'card__' + mode : 'card__dark'" >
+  <h2>Crear una cuenta</h2>
+  <form>
+    <div class="form__group">
+      <input type="text" placeholder="Nombre completo" />
+    </div>
+    <div class="form__group">
+      <input type="email" placeholder="Correo electrónico" />
+    </div>
+    <div class="form__group">
+      <input type="password" placeholder="Contraseña" />
+    </div>
+    <div class="form__group">
+      <input type="password" placeholder="Confirmar contraseña" />
+    </div>
+    <div class="form__group">
+      <a routerLink="/auth" [ngClass]="mode ? 'a__' + mode : 'a__dark'">Ingresar a tareas</a>
+    </div>
+    <div class="form__group">
+      <button type="submit" [ngClass]="mode ? 'btn__' + mode : 'btn__dark'">Crear</button>
+    </div>
+  </form>
+</div>
