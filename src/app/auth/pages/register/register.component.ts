@@ -35,6 +35,11 @@ export class RegisterComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.mode = localStorage.getItem('mode')!;
+    this.authService.validateToken().subscribe((resp) => {
+      if (resp) {
+        this.router.navigateByUrl('tasks');
+      }
+    });
   }
 
   register() {

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, DoCheck {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private route: Router
+    private router: Router
   ) {}
 
   ngDoCheck(): void {
@@ -33,6 +33,11 @@ export class LoginComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.mode = localStorage.getItem('mode')!;
+    this.authService.validateToken().subscribe((resp) => {
+      if (resp) {
+        this.router.navigateByUrl('tasks');
+      }
+    });
   }
 
   login(): void {
@@ -44,7 +49,7 @@ export class LoginComponent implements OnInit, DoCheck {
       this.authService.login(data).subscribe((resp) => {
         if (resp.code === 200) {
           this.loginForm.reset();
-          this.route.navigateByUrl('/tasks');
+          this.router.navigateByUrl('/tasks');
         } else {
           if (resp.code === 400) {
             this.errorMessage = resp.message;

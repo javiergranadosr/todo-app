@@ -44,8 +44,6 @@ export class AuthService {
       'x-token',
       localStorage.getItem('x-token') || ''
     );
-    console.log(headers);
-    console.log(localStorage.getItem('x-token'))
     return this.http.get<tokenResponse>(ep, { headers }).pipe(
       map((resp) => {
         return resp.ok;
