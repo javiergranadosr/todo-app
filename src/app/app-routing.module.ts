@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { ValidateTokenGuard } from './shared/guards/validate-token.guard';
 
 const routes: Routes = [
   {
@@ -12,6 +13,8 @@ const routes: Routes = [
     path: 'tasks',
     loadChildren: () =>
       import('./tasks/tasks.module').then((tasks) => tasks.TasksModule),
+    canActivate: [ValidateTokenGuard],
+    canLoad: [ValidateTokenGuard],
   },
   {
     path: '**',
