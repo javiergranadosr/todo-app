@@ -29,10 +29,10 @@ export class AppComponent implements OnInit {
       this.modeDark = true;
       localStorage.setItem('mode', 'light');
     } else {
-      this.mode = 'light';
+      this.mode = 'dark';
       this.modeLight = true;
       this.modeDark = false;
-      localStorage.setItem('mode', 'light');
+      localStorage.setItem('mode', 'dark');
     }
   }
 }
