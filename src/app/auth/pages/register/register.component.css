@@ -49,9 +49,14 @@ input, button {
   color: var(--veryLightGray);
 }
 
-.btn__dark {
+.btn__dark, .input__dark {
   background-color: var(--veryDarkDesaturatedBlue);
   color: var(--veryLightGray);
+}
+
+.input__light {
+  background-color: none;
+  color: none;
 }
 
 a {

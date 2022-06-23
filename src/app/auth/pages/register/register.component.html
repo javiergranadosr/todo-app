@@ -1,23 +1,43 @@
-<div [ngClass]="mode ? 'card__' + mode : 'card__dark'" >
+<div [ngClass]="mode ? 'card__' + mode : 'card__dark'">
   <h2>Crear una cuenta</h2>
   <form>
     <div class="form__group">
-      <input type="text" placeholder="Nombre completo" />
+      <input
+        type="text"
+        placeholder="Nombre completo"
+        [ngClass]="mode ? 'input__' + mode : 'input__dark'"
+      />
     </div>
     <div class="form__group">
-      <input type="email" placeholder="Correo electrónico" />
+      <input
+        type="email"
+        placeholder="Correo electrónico"
+        [ngClass]="mode ? 'input__' + mode : 'input__dark'"
+      />
     </div>
     <div class="form__group">
-      <input type="password" placeholder="Contraseña" />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        [ngClass]="mode ? 'input__' + mode : 'input__dark'"
+      />
     </div>
     <div class="form__group">
-      <input type="password" placeholder="Confirmar contraseña" />
+      <input
+        type="password"
+        placeholder="Confirmar contraseña"
+        [ngClass]="mode ? 'input__' + mode : 'input__dark'"
+      />
     </div>
     <div class="form__group">
-      <a routerLink="/auth" [ngClass]="mode ? 'a__' + mode : 'a__dark'">Ingresar a tareas</a>
+      <a routerLink="/auth" [ngClass]="mode ? 'a__' + mode : 'a__dark'"
+        >Ingresar a tareas</a
+      >
     </div>
     <div class="form__group">
-      <button type="submit" [ngClass]="mode ? 'btn__' + mode : 'btn__dark'">Crear</button>
+      <button type="submit" [ngClass]="mode ? 'btn__' + mode : 'btn__dark'">
+        Crear
+      </button>
     </div>
   </form>
 </div>
