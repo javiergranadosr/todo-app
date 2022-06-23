@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { catchError, tap } from 'rxjs/operators';
-import { AuthReponse, Login } from '../interfaces/auth';
+import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { AuthReponse, Login, Register } from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,14 @@ export class AuthService {
           localStorage.setItem('x-token', resp.token);
         }
       }),
+      catchError((error) => of(error.error))
+    );
+  }
+
+  register(data: Register) {
+    const ep: string = `${this.urlBase}/users`;
+    return this.http.post<AuthReponse>(ep, data).pipe(
+      map((resp) => resp),
       catchError((error) => of(error.error))
     );
   }

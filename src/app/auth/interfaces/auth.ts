@@ -3,6 +3,12 @@ export interface Login {
   password: string;
 }
 
+export interface Register {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface User {
   name: string;
   email:string;
@@ -13,7 +19,8 @@ export interface User {
 }
 
 export interface AuthReponse {
-  code: number,
+  code: number;
+  message?: string;
   user: User;
-  token: string
+  token: string;
 }

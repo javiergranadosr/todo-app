@@ -40,17 +40,19 @@ export class LoginComponent implements OnInit, DoCheck {
     const data: Login = { email, password };
     this.errors = [];
     this.errorMessage = '';
-
-    this.authService.login(data).subscribe((resp) => {
-      if (resp.code === 200) {
-        this.route.navigateByUrl("/tasks");
-      } else {
-        if (resp.code === 400) {
-          this.errorMessage = resp.message;
+    if (this.loginForm.valid) {
+      this.authService.login(data).subscribe((resp) => {
+        if (resp.code === 200) {
+          this.loginForm.reset();
+          this.route.navigateByUrl('/tasks');
+        } else {
+          if (resp.code === 400) {
+            this.errorMessage = resp.message;
+          }
+          this.errors = resp.errors;
+          console.log(this.errors);
         }
-        this.errors = resp.errors;
-        console.log(this.errors);
-      }
-    });
+      });
+    }
   }
 }

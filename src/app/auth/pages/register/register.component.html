@@ -1,10 +1,15 @@
 <div [ngClass]="mode ? 'card__' + mode : 'card__dark'">
   <h2>Crear una cuenta</h2>
-  <form>
+  <h3 *ngIf="errorMessage.length > 0">{{ errorMessage }}</h3>
+  <ng-container *ngIf=" errors && errors.length > 0">
+    <h3 *ngFor="let error of errors">{{ error.msg }}</h3>
+  </ng-container>
+  <form [formGroup]="registerForm"  (ngSubmit)="register()" >
     <div class="form__group">
       <input
         type="text"
         placeholder="Nombre completo"
+        formControlName = "name"
         [ngClass]="mode ? 'input__' + mode : 'input__dark'"
       />
     </div>
@@ -12,6 +17,7 @@
       <input
         type="email"
         placeholder="Correo electrónico"
+        formControlName = "email"
         [ngClass]="mode ? 'input__' + mode : 'input__dark'"
       />
     </div>
@@ -19,6 +25,7 @@
       <input
         type="password"
         placeholder="Contraseña"
+        formControlName ="password"
         [ngClass]="mode ? 'input__' + mode : 'input__dark'"
       />
     </div>
@@ -26,6 +33,7 @@
       <input
         type="password"
         placeholder="Confirmar contraseña"
+        formControlName = "confirmPassword"
         [ngClass]="mode ? 'input__' + mode : 'input__dark'"
       />
     </div>
@@ -35,7 +43,7 @@
       >
     </div>
     <div class="form__group">
-      <button type="submit" [ngClass]="mode ? 'btn__' + mode : 'btn__dark'">
+      <button type="submit" [disabled]="registerForm.invalid" [ngClass]="mode ? 'btn__' + mode : 'btn__dark'">
         Crear
       </button>
     </div>
