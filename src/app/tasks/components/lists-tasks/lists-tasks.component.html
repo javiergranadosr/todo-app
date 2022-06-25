@@ -1,1 +1,22 @@
-<p>lists-tasks works!</p>
+<div
+  class="input__create"
+  [ngClass]="mode ? 'create__' + mode : 'create__dark'"
+>
+  <div class="checkbox">
+    <input type="checkbox" id="status1" />
+    <label for="status1"></label>
+  </div>
+  <span>Task 1</span>
+  <img src="./assets/images/icon-cross.svg" alt="Eliminar tarea">
+</div>
+
+<div class="options"  [ngClass]="mode ? 'create__' + mode : 'create__dark'">
+  <span>5 items left</span>
+  <span>Clear Completed</span>
+</div>
+
+<div class="filters" [ngClass]="mode ? 'create__' + mode : 'create__dark'">
+  <span>All</span>
+  <span>Active</span>
+  <span>Completed</span>
+</div>

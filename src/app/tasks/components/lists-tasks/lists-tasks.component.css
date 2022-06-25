@@ -1,0 +1,150 @@
+.input__create {
+  width: 100%;
+  padding: 5px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: none;
+  align-items: center;
+  border-bottom: 1px solid var(--veryDarkGrayishBlue);
+  border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -ms-border-radius: 5px 5px 0px 0px;
+  -o-border-radius: 5px 5px 0px 0px;
+}
+
+.create__dark {
+  background-color: var(--veryDarkBlue);
+}
+
+.create__light {
+  background-color: var(--veryLightGray);
+}
+
+/* Custom checkbox */
+
+.checkbox {
+  width: 20%;
+  position: relative;
+}
+
+.checkbox label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--veryDarkDesaturatedBlue);
+  background-color: none;
+}
+
+.checkbox label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  width: 12px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+.checkbox input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.checkbox input[type="checkbox"]:checked + label {
+  background: linear-gradient(
+    90deg,
+    rgba(87, 221, 255, 1) 0%,
+    rgba(192, 88, 243, 1) 34%
+  );
+}
+
+.checkbox input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+span {
+  width: 70%;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--veryDarkGrayishBlue);
+  text-decoration: line-through;
+}
+
+img {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.filters span {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-radius: 0px 0px 5px 5px;
+  -webkit-border-radius: 0px 0px 5px 5px;
+  -moz-border-radius: 0px 0px 5px 5px;
+  -ms-border-radius: 0px 0px 5px 5px;
+  -o-border-radius: 0px 0px 5px 5px;
+}
+
+.options span {
+  text-decoration: none;
+  transition: all 0.5;
+  -webkit-transition: all 0.5;
+  -moz-transition: all 0.5;
+  -ms-transition: all 0.5;
+  -o-transition: all 0.5;
+}
+
+.options span:last-child {
+  text-align: right;
+}
+
+.options span:last-child:hover,
+.filters span:hover {
+  cursor: pointer;
+  color: hsl(220, 98%, 61%);
+}
