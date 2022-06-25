@@ -1,1 +1,14 @@
-<p>input-create works!</p>
+<div
+  class="input__create"
+  [ngClass]="mode ? 'create__' + mode : 'create__dark'"
+>
+  <div class="checkbox">
+    <input type="checkbox" id="status" />
+    <label for="status"></label>
+  </div>
+  <input
+    type="text"
+    [ngClass]="mode ? 'input__' + mode : 'input__dark'"
+    placeholder="Create a new todo."
+  />
+</div>
