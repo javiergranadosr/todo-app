@@ -104,6 +104,22 @@ body {
 }
 
 
+/* DESKTOP */
+
+@media screen and (min-width: 768px) {
+  .banner__light {
+    background-image: url("./assets/images/light/bg-desktop-light.jpg");
+  }
+
+  .banner__dark {
+    background-image: url("./assets/images/dark/bg-desktop-dark.jpg");
+  }
+
+  .content {
+    max-width: 650px;
+  }
+
+}
 
 
 
