@@ -45,6 +45,9 @@ export class AuthService {
       localStorage.getItem('x-token') || ''
     );
     return this.http.get<tokenResponse>(ep, { headers }).pipe(
+      tap( (resp) => {
+        localStorage.setItem('uid', resp.user.uid);
+      }),
       map((resp) => {
         return resp.ok;
       }),

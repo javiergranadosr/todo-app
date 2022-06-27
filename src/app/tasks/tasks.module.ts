@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 import { MainComponent } from './main/main.component';
 import { InputCreateComponent } from './components/input-create/input-create.component';
@@ -12,11 +14,12 @@ import { TasksRoutingModule } from './tasks-routing.module';
   declarations: [
     MainComponent,
     InputCreateComponent,
-    ListsTasksComponent
+    ListsTasksComponent,
   ],
   imports: [
     CommonModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    FormsModule
   ]
 })
 export class TasksModule { }

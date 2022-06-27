@@ -3,12 +3,19 @@
   [ngClass]="mode ? 'create__' + mode : 'create__dark'"
 >
   <div class="checkbox">
-    <input type="checkbox" id="status" />
+    <input
+      type="checkbox"
+      id="status"
+      (change)="toggleStatus($event)"
+      [checked]="complete"
+    />
     <label for="status"></label>
   </div>
   <input
     type="text"
     [ngClass]="mode ? 'input__' + mode : 'input__dark'"
     placeholder="Create a new todo."
+    [(ngModel)]="nameTask"
+    (keyup.enter)="createTask()"
   />
 </div>

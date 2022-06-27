@@ -29,4 +29,5 @@ export interface tokenResponse {
   code: number;
   message: string;
   ok: boolean;
+  user: User
 }
