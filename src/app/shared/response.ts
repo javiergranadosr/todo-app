@@ -9,7 +9,7 @@ export interface ErrorResponse {
 export interface TaskResponse {
   code: number;
   message: string;
-  task: {
+  task?: {
     name: string;
     complete: boolean;
     status: boolean;
@@ -19,3 +19,4 @@ export interface TaskResponse {
     uid: string;
   }
 }
+

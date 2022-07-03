@@ -41,6 +41,14 @@ body {
   align-items:center;
 }
 
+.completed{
+  text-decoration: line-through;
+}
+
+.active {
+  color: hsl(220, 98%, 61%) !important;
+}
+
 .light, .dark {
   height: 100vh;
 }

@@ -1,24 +1,57 @@
 <div
-  class="input__create"
+  class="input__create separator"
   [ngClass]="mode ? 'create__' + mode : 'create__dark'"
 >
   <div class="checkbox">
-    <input type="checkbox" id="status1" />
-    <label for="status1"></label>
+    <input
+      type="checkbox"
+      id="status"
+      (change)="toggleStatus($event)"
+      [checked]="complete"
+    />
+    <label for="status"></label>
   </div>
-  <span>Task 1</span>
-  <img src="./assets/images/icon-cross.svg" alt="Eliminar tarea">
+  <input
+    type="text"
+    [ngClass]="mode ? 'input__' + mode : 'input__dark'"
+    placeholder="Create a new todo."
+    [(ngModel)]="nameTask"
+    (keyup.enter)="createTask()"
+  />
 </div>
 
-<div class="options"  [ngClass]="mode ? 'create__' + mode : 'create__dark'">
+
+<div
+  class="input__create"
+  [ngClass]="mode ? 'create__' + mode : 'create__dark'"
+  *ngFor="let task of tasks"
+>
+  <div class="checkbox">
+    <input type="checkbox" [id]="task.uid" [checked]="task.complete" />
+    <label [for]="task.uid"></label>
+  </div>
+
+  <span [class.completed]="task.complete">{{ task.name | titlecase }}</span>
+  <img
+    src="./assets/images/icon-cross.svg"
+    alt="Eliminar tarea"
+    (click)="deleteTask(task.uid)"
+  />
+</div>
+
+<div class="options" [ngClass]="mode ? 'create__' + mode : 'create__dark'">
   <span>5 items left</span>
   <span>Clear Completed</span>
 </div>
 
 <div class="filters" [ngClass]="mode ? 'create__' + mode : 'create__dark'">
-  <span class="span__desktop" >5 items left</span>
-  <span>All</span>
-  <span>Active</span>
-  <span>Completed</span>
-  <span class="span__desktop" >Clear Completed</span>
+  <span class="span__desktop">{{ total }} items left</span>
+  <span [class.active]="typeFilter === 'all'" (click)="configureListTasks(-1)">All</span>
+  <span [class.active]="typeFilter === 'active'" (click)="configureListTasks(0)"
+    >Active</span
+  >
+  <span [class.active]="typeFilter === 'completed'" (click)="configureListTasks(1)"
+    >Completed</span
+  >
+  <span class="span__desktop" (click)="clearTasks()" >Clear Completed</span>
 </div>

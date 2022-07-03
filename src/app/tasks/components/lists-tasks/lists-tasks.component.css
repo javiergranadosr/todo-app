@@ -1,7 +1,82 @@
+/*  INPUT CREATE STYLES */
+
+/* Custom checkbox */
+
+.checkbox {
+  width: 20%;
+  position: relative;
+}
+
+.checkbox label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var( --veryDarkDesaturatedBlue);
+  background-color: none;
+}
+
+
+.checkbox label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  width: 12px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+.checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+
+.checkbox input[type="checkbox"]:checked + label {
+  background: linear-gradient(90deg, rgba(87,221,255,1) 0%, rgba(192,88,243,1) 34%);
+}
+
+.checkbox input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+input[type=text] {
+  width: 90%;
+  padding: 15px;
+  border:none;
+  outline: none;
+}
+
+.input__dark {
+  background-color: var(--veryDarkBlue);
+  color: var(--veryLightGray);
+}
+
+.input__light {
+  background-color: var(--veryLightGray);
+}
+
+/*  LISTS TASKS  STYLES */
+
 .input__create {
   width: 100%;
   padding: 5px;
-  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -13,6 +88,10 @@
   -moz-border-radius: 5px 5px 0px 0px;
   -ms-border-radius: 5px 5px 0px 0px;
   -o-border-radius: 5px 5px 0px 0px;
+}
+
+.input__create:first-child {
+  margin-top:20px;
 }
 
 .create__dark {
@@ -88,7 +167,6 @@ span {
   font-size: 1rem;
   font-weight: 400;
   color: var(--veryDarkGrayishBlue);
-  text-decoration: line-through;
 }
 
 img {
@@ -155,6 +233,16 @@ img {
   color: hsl(220, 98%, 61%);
 }
 
+.separator {
+  margin-top: -80px !important;
+  margin-bottom: 20px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+}
 
 /* DESKTOP */
 
