@@ -22,3 +22,8 @@ export interface ListTasks {
   total: number;
   tasks: Tasks[]
 }
+
+export interface ChangeComplete {
+  id: string;
+  complete: boolean;
+}

@@ -20,14 +20,18 @@
   />
 </div>
 
-
 <div
   class="input__create"
   [ngClass]="mode ? 'create__' + mode : 'create__dark'"
   *ngFor="let task of tasks"
 >
   <div class="checkbox">
-    <input type="checkbox" [id]="task.uid" [checked]="task.complete" />
+    <input
+      type="checkbox"
+      [id]="task.uid"
+      [checked]="task.complete"
+      (change)="changeComplete($event, task.uid)"
+    />
     <label [for]="task.uid"></label>
   </div>
 
@@ -38,20 +42,29 @@
     (click)="deleteTask(task.uid)"
   />
 </div>
-
 <div class="options" [ngClass]="mode ? 'create__' + mode : 'create__dark'">
   <span>5 items left</span>
-  <span>Clear Completed</span>
+  <span (click)="clearTasks()">Clear Completed</span>
 </div>
 
 <div class="filters" [ngClass]="mode ? 'create__' + mode : 'create__dark'">
   <span class="span__desktop">{{ total }} items left</span>
-  <span [class.active]="typeFilter === 'all'" (click)="configureListTasks(-1)">All</span>
-  <span [class.active]="typeFilter === 'active'" (click)="configureListTasks(0)"
+  <span [class.active]="typeFilter === 'all'" (click)="configureListTasks(-1, true)"
+    >All</span
+  >
+  <span [class.active]="typeFilter === 'active'" (click)="configureListTasks(0, true)"
     >Active</span
   >
-  <span [class.active]="typeFilter === 'completed'" (click)="configureListTasks(1)"
+  <span
+    [class.active]="typeFilter === 'completed'"
+    (click)="configureListTasks(1, true)"
     >Completed</span
   >
-  <span class="span__desktop" (click)="clearTasks()" >Clear Completed</span>
+  <span class="span__desktop" (click)="clearTasks()">Clear Completed</span>
+</div>
+
+<div class="pagination">
+  <span [ngClass]="mode ? 'pagination__' + mode : 'pagination__dark'" (click)="prevPage()"  ><</span>
+  <span [ngClass]="mode ? 'pagination__' + mode : 'pagination__dark'" > {{ currentPage}} </span>
+  <span [ngClass]="mode ? 'pagination__' + mode : 'pagination__dark'"  (click)="nextPage()" >></span>
 </div>

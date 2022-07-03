@@ -244,6 +244,33 @@ img {
   -o-border-radius: 5px !important;
 }
 
+.pagination{
+  margin:30px;
+  text-align: center;
+}
+
+.pagination span {
+  font-size:0.8rem;
+  height:5px;
+  width: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin: 0px 5px;
+}
+
+.pagination__dark {
+  background-color: var(--veryDarkBlue);
+  color: var(--veryLightGray);
+}
+
+.pagination__light {
+  background-color: var(--veryLightGray);
+}
+
 /* DESKTOP */
 
 @media screen and (min-width: 768px) {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 import { TaskResponse } from 'src/app/shared/response';
-import { ListTasks, Task } from '../interfaces/tasks';
+import { ChangeComplete, ListTasks, Task } from '../interfaces/tasks';
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -68,4 +68,15 @@ export class TasksService {
     const ep: string = `${this.urlBase}/tasks/${id}`;
     return this.http.put<TaskResponse>(ep, {}, { headers: this.headers });
   }
+
+  /**
+   * Cambiar la tarea en acompletado o activa
+   * @param data
+   * @returns
+   */
+  changeComplete(data: ChangeComplete) {
+    const ep: string = `${this.urlBase}/tasks/changeComplete`;
+    return this.http.post<TaskResponse>(ep,data, { headers: this.headers });
+  }
+
 }

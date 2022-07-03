@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit, DoCheck {
   errorMessage: string = '';
 
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['demo@demo.com', [Validators.required, Validators.email]],
+    password: ['123456', [Validators.required, Validators.minLength(6)]],
   });
 
   constructor(

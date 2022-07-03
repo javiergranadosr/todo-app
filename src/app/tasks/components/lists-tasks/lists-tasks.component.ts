@@ -1,6 +1,6 @@
-import { AfterContentChecked, Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
-import { Tasks, Task } from '../../interfaces/tasks';
+import { Tasks, Task, ChangeComplete } from '../../interfaces/tasks';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 @Component({
@@ -17,6 +17,11 @@ export class ListsTasksComponent implements OnInit, DoCheck {
   total: number = 0;
   typeFilter: string = 'all';
 
+  limit: number = 5;
+  from: number = 0;
+  currentPage: number = 1;
+  totalPages: number = 0;
+
   constructor(private tasksService: TasksService) {}
 
   ngDoCheck(): void {
@@ -25,7 +30,7 @@ export class ListsTasksComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.mode = localStorage.getItem('mode')!;
-    this.getTasks();
+    this.getTasks(true);
   }
 
   createTask() {
@@ -40,7 +45,7 @@ export class ListsTasksComponent implements OnInit, DoCheck {
         Notify.success(resp.message);
         this.nameTask = '';
         this.complete = false;
-        this.getTasks();
+        this.getTasks(false);
       } else {
         Notify.warning(
           'Hubo un error al crear la tarea, contacte a un administrador.'
@@ -54,10 +59,13 @@ export class ListsTasksComponent implements OnInit, DoCheck {
     this.complete = checked;
   }
 
-  configureListTasks(complete: number = -1) {
+  configureListTasks(complete: number = -1, resetPagination: boolean) {
     const userId: string = localStorage.getItem('uid')!;
-    const limit: number = 10;
-    const from: number = 0;
+
+    if (resetPagination) {
+      this.currentPage = 1;
+      this.from = 0;
+    }
 
     switch (complete) {
       case -1:
@@ -75,32 +83,46 @@ export class ListsTasksComponent implements OnInit, DoCheck {
     }
 
     this.tasksService
-      .getTasks(userId, complete, limit, from)
+      .getTasks(userId, complete, this.limit, this.from)
       .subscribe(({ total, code, tasks }) => {
         if (code === 200) {
           this.tasks = tasks;
-          this.total = tasks.length;
-        } else {
-          this.total = 0;
-          this.tasks = [];
+          this.total = total;
+          this.totalPages = Math.ceil(this.total / this.limit);
         }
       });
   }
 
-  getTasks() {
+  getTasks(resetPagination: boolean) {
     switch (this.typeFilter) {
       case 'all':
-        this.configureListTasks(-1);
+        this.configureListTasks(-1, resetPagination);
         break;
       case 'active':
-        this.configureListTasks(0);
+        this.configureListTasks(0, resetPagination);
         break;
       case 'completed':
-        this.configureListTasks(1);
+        this.configureListTasks(1, resetPagination);
         break;
       default:
-        this.configureListTasks(-1);
+        this.configureListTasks(-1, resetPagination);
         break;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.from -= this.limit;
+      this.getTasks(false);
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.from += this.limit;
+      this.getTasks(false);
     }
   }
 
@@ -108,7 +130,7 @@ export class ListsTasksComponent implements OnInit, DoCheck {
     this.tasksService.deleteTask(id).subscribe((resp) => {
       if (resp.code === 200) {
         Notify.success(resp.message);
-        this.getTasks();
+        this.getTasks(true);
       } else {
         Notify.warning(resp.message);
       }
@@ -122,7 +144,21 @@ export class ListsTasksComponent implements OnInit, DoCheck {
     this.tasksService.clearTasks(userId).subscribe((resp) => {
       if (resp.code === 200) {
         Notify.success(resp.message);
-        this.getTasks();
+        this.typeFilter = "all";
+        this.getTasks(true);
+      } else {
+        Notify.warning(resp.message);
+      }
+    });
+  }
+
+  changeComplete(event: any, taskId: string) {
+    const checked = event.target.checked;
+    const data: ChangeComplete = { id: taskId, complete: checked };
+    this.tasksService.changeComplete(data).subscribe((resp) => {
+      if (resp.code === 200) {
+        Notify.success(resp.message);
+        this.getTasks(false);
       } else {
         Notify.warning(resp.message);
       }
